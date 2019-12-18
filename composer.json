@@ -1,0 +1,28 @@
+{
+    "name": "chassisphp/chassisphp-skeleton",
+    "description": "Skeleton app for the ChassisPHP Framework. This app is a starting point for developing your own site/application.",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Roger Creasy",
+            "email": "roger.creasy@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src"
+        }
+    },
+    "repositories": {
+        "dev-package": {
+        "type": "path",
+        "url": "../ChassisPHP",
+            "options": {
+                "symlink": true
+            }
+        }
+    }
+    "require": {}
+}
