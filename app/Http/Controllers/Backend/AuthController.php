@@ -2,22 +2,21 @@
 
 namespace App\Http\Controllers\Backend;
 
-use Lib\Framework\Hash;
 use Doctrine\ORM\Query;
-use Lib\Framework\Session;
 use Database\Entities\User;
-use Lib\Database\Connection;
-use Lib\Framework\Http\Controller;
+use ChassisPHP\Framework\Hash;
+use ChassisPHP\Framework\Session;
+use ChassisPHP\Framework\Connection;
+use ChassisPHP\Framework\Http\Controller;
 
 class AuthController extends Controller
 {
     private $hash;
-    private $connection;
     private $entityManager;
 
     public function __construct()
     {
-        // Set up DB connection and entity
+        // Set up entity
         $this->connection    = new Connection;
         $this->hash          = new Hash;
         $this->entityManager = $this->connection->entityManager;
@@ -25,8 +24,7 @@ class AuthController extends Controller
 
     public function addMiddleware()
     {
-        // Only allow logged in users
-        //$this->middlewareQueue->addMiddleware('AuthMiddleware', '\Lib\Framework\Http\Middleware\\');
+        //
     }
 
 

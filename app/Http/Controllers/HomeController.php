@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Lib\Framework\Session;
-use Lib\Framework\Http\Controller;
+use ChassisPHP\Framework\Session;
+use ChassisPHP\Framework\Http\Controller;
 
 class HomeController extends Controller
 {

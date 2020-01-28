@@ -1,5 +1,7 @@
 <?php
 
+use ChassisPHP\Framework\Core;
+
 /**
  * ChassisPHP - A PHP framework designed for CMS
  *
@@ -12,16 +14,19 @@
 // set a constant with the time we are starting
 define('CHASSIS_START', microtime(true));
 
+// set a constant with the root directory
+define('APP_ROOT', dirname(__FILE__, 2));
+
 // crank up the Composer autoloading
 require __DIR__.'/../vendor/autoload.php';
 
 // load environment variables
-\Lib\Framework\EnvVarsLoader::loadEnvVars();
+\ChassisPHP\Framework\EnvVarsLoader::loadEnvVars();
 
 // set session storage location and
 // start the session
-ini_set('session.save_path', dirname(__FILE__, 2) . '/storage/sessions');
-ini_set('session.gc_probability', \Lib\Framework\ConfigManager::get('app.gcProb'));
+ini_set('session.save_path', APP_ROOT . '/storage/sessions');
+ini_set('session.gc_probability', \ChassisPHP\Framework\ConfigManager::get('app.gcProb'));
 session_start();
 
 // set the timeout for the session
@@ -42,11 +47,11 @@ if (isset($_SESSION['timeout'])) {
 $_SESSION['timeout'] = time();
 
 // Handle Fatal Errors
-require __DIR__ . '/../lib/Framework/Handlers/FatalErrorHandler.php';
-$fatalErrorHandler = new \Lib\Framework\Handlers\FatalErrorHandler;
+require __DIR__ . '/../app/Handlers/FatalErrorHandler.php';
+$fatalErrorHandler = new \App\Handlers\FatalErrorHandler;
 register_shutdown_function(array($fatalErrorHandler, 'fatalErrorHandler'));
 
 // set up the application
-$app = new \Lib\Framework\Core();
+$app = new Core();
 
 $app->run();

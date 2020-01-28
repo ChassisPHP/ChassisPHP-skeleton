@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Lib\Database\Connection;
-use Lib\Framework\Session;
-use Lib\Framework\Http\Controller;
+use ChassisPHP\Framework\Connection;
+use ChassisPHP\Framework\Session;
+use ChassisPHP\Framework\Http\Controller;
 
 class AboutController extends Controller
 {
@@ -14,7 +14,7 @@ class AboutController extends Controller
         $this->connection = new Connection;
         $this->entityManager = $this->connection->entityManager;
     }
-    
+
     public function addMiddleware()
     {
         // TODO change container to check for existence of this method

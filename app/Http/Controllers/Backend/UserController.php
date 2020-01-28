@@ -3,17 +3,17 @@
 namespace App\Http\Controllers\Backend;
 
 use Doctrine\ORM\Query;
-use Lib\Framework\Hash;
-use Lib\Framework\Session;
 use Database\Entities\User;
-use Lib\Database\Connection;
-use Lib\Framework\Http\Controller;
+use ChassisPHP\Framework\Hash;
+use ChassisPHP\Framework\Session;
+use ChassisPHP\Framework\Connection;
+use ChassisPHP\Framework\Http\Controller;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 
 class UserController extends Controller
 {
 
-    private $connection;
+    protected $connection;
     private $entityManager;
     private $hash;
 
@@ -28,7 +28,7 @@ class UserController extends Controller
     public function addMiddleware()
     {
         // Only allow logged in users
-        $this->middlewareQueue->addMiddleware('AuthMiddleware', '\Lib\Framework\Http\Middleware\\');
+        $this->middlewareQueue->addMiddleware('AuthMiddleware', '\ChassisPHP\Framework\Http\Middleware\\');
     }
 
     public function index($message = null)

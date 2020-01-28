@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use Lib\Framework\Session;
+use ChassisPHP\Framework\Session;
 
 class TestMiddleware
 {
