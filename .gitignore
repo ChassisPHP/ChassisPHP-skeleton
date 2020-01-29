@@ -1,5 +1,11 @@
+.DS_Store
+.idea/
+.git/
 .env
-*.sw*
-/storage/logs/*
-/storage/sessions/*
-/vendor/
+**.sw*
+vendor
+storage/
+composer.lock
+tags
+.ctags
+!storage/backup/.gitkeep

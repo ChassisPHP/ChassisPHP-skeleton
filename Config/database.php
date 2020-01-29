@@ -4,7 +4,7 @@ if (!getenv('DATABASE_PATH')) {
     require __DIR__.'/../vendor/autoload.php';
 
     // load environment variables
-    \Lib\Framework\EnvVarsLoader::loadEnvVars();
+    \ChassisPHP\Framework\EnvVarsLoader::loadEnvVars();
 }
 
 return [

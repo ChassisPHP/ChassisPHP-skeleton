@@ -5,7 +5,7 @@
 
 	class Backup {
 		public static function run(Event $event) {
-			\Lib\Framework\EnvVarsLoader::loadEnvVars();
+			\ChassisPHP\Framework\EnvVarsLoader::loadEnvVars();
 
 			$cur = getcwd();
 			$dir = __DIR__ . '/../storage/backup/';

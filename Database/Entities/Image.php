@@ -2,10 +2,10 @@
 
 namespace Database\Entities;
 
-use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\Index;
+use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\UniqueConstraint;
-use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints as Assert;
 
 /**
 * @ORM\Entity
@@ -22,14 +22,14 @@ class Image
     * @ORM\GeneratedValue
     **/
     protected $id;
-    
+
     /**
     * @ORM\Column(type="string", unique=true)
     */
     protected $title;
 
     /**
-    * @ORM\Column(type="string", unique=true)
+     * @ORM\Column(type="string", unique=true)
     */
     protected $position;
 
@@ -37,7 +37,7 @@ class Image
     * @ORM\Column(type="text")
     */
     protected $caption;
-    
+
     /**
     * @ORM\Column(type="string")
     */
@@ -45,8 +45,8 @@ class Image
 
     /**
     * Many Images have one Album.
-    * @ORM\ManyToOne(targetEntity="Album", inversedBy="Image")
-    * @ORM\JoinColumn(name="album_id", referencedColumnName="id")
+    * @ORM\ManyToOne(targetEntity="Album", inversedBy="images")
+    * @ORM\JoinColumn(name="album", referencedColumnName="id")
     */
     protected $album;
 
@@ -54,7 +54,7 @@ class Image
     * @ORM\Column(type="datetime")
     */
     protected $publicationDate;
-    
+
     /**
     * @ORM\Column(type="datetime")
     */
@@ -73,23 +73,23 @@ class Image
     * @ORM\JoinColumn(name="updatedBy", referencedColumnName="id")
     */
     private $updatedBy;
-    
+
     // Entity getters
     public function getId()
     {
         return $this->id;
     }
-    
+
     public function getTitle()
     {
         return $this->title;
     }
-    
+
     public function getPosition()
     {
         return $this->position;
     }
-    
+
     public function getCaption()
     {
         return $this->caption;
@@ -124,7 +124,7 @@ class Image
     {
         return $this->updated;
     }
-    
+
     // Entity setters
     public function setTitle($title)
     {

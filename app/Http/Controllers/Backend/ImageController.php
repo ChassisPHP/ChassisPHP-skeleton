@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers\Backend;
 
-use Lib\Database\Connection;
-use Lib\Framework\Http\Controller;
-use Lib\Framework\Session;
 use Doctrine\ORM\Query;
-use Database\Entities\Image;
 use Database\Entities\User;
+use Database\Entities\Image;
+use ChassisPHP\Framework\Session;
+use ChassisPHP\Framework\Connection;
+use ChassisPHP\Framework\Http\Controller;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 
 class ImageController extends Controller
 {
 
-    private $connection;
+    protected $connection;
     private $entityManager;
     private $loggedInUser;
     private $loggedInUserId;
@@ -30,7 +30,7 @@ class ImageController extends Controller
     public function addMiddleware()
     {
         // Only allow logged in users
-        $this->middlewareQueue->addMiddleware('AuthMiddleware', '\Lib\Framework\Http\Middleware\\');
+        $this->middlewareQueue->addMiddleware('AuthMiddleware', '\ChassisPHP\Framework\Http\Middleware\\');
     }
 
     public function index($message = null)
@@ -44,7 +44,7 @@ class ImageController extends Controller
             'loggedInUser' => $this->loggedInUser
         ));
     }
-    
+
     /**
     * Show the form for creating a new resource.
     *
@@ -81,15 +81,15 @@ class ImageController extends Controller
 
         $timestamp = new \DateTime();
         $image->setPublicationDate($timestamp);
-        
+
         $createdBy = $this->entityManager->find('Database\Entities\User', $formVars['createdById']);
         $image->setCreatedBy($createdBy);
-        
+
         $album = $this->entityManager->find('Database\Entities\Album', $formVars['albumId']);
         $image->setAlbum($album);
 
         $image->setFilename($_FILES["imageFile"]["name"]);
-        
+
         $formVars['filename'] = $_FILES["imageFile"]["name"];
         $message = $this->hydrateAndPersist($image, $formVars);
         $this->saveAs('storage/public/img', $formVars['filename']);
@@ -150,19 +150,19 @@ class ImageController extends Controller
     public function update($id)
     {
         $image = $this->entityManager->find('Database\Entities\Image', $id['ID']);
-    
+
         $formVars = $this->request->getParsedBody();
 
         $createdBy = $this->entityManager->find('Database\Entities\User', $formVars['createdBy']);
         $formVars['createdBy'] = $createdBy;
         $updatedBy = $this->entityManager->getRepository('Database\Entities\User')->find($this->loggedInUserId);
         $image->setUpdatedBy($updatedBy);
-        
+
         $this->hydrateAndPersist($image, $formVars);
 
         return $this->select($id);
     }
- 
+
     /**
     * Remove the specified resource from storage.
     *
