@@ -2,7 +2,7 @@
 .idea/
 .git/
 .env
-*.sw*
+**.sw*
 vendor
 storage/
 composer.lock
