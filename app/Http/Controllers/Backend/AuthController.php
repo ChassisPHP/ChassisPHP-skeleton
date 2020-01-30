@@ -197,9 +197,12 @@ class AuthController extends Controller
             // send the user to the page request prior to login
             $URI = Session::get('history');
 
-            redirectPath("backend/users");
+            if ($URI) {
+                redirectPath($URI);
+            } else {
+                redirectPath("backend/users");
+            }
         } else {
-            //$message['type'] = 'alert-danger';
             Session::setMessage('warning', 'Wrong Email or Password, please try again');
 
             return $this->index();
