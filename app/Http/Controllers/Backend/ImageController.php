@@ -12,18 +12,17 @@ use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 
 class ImageController extends Controller
 {
-
     protected $connection;
-    private $entityManager;
     private $loggedInUser;
+    private $entityManager;
     private $loggedInUserId;
 
     public function __construct()
     {
         // Set up DB connection and entity
-        $this->connection = new Connection;
-        $this->entityManager = $this->connection->entityManager;
-        $this->loggedInUser = Session::get('name');
+        $this->connection     = new Connection;
+        $this->entityManager  = $this->connection->entityManager;
+        $this->loggedInUser   = Session::get('name');
         $this->loggedInUserId = Session::get('user');
     }
 
@@ -53,17 +52,23 @@ class ImageController extends Controller
 
     public function create($formVars = null)
     {
+        $albumRepository = $this->entityManager->getRepository('Database\Entities\Album');
+        $albums = $albumRepository->findAll();
+
+        $message =  Session::getMessage();
         $formAction = "/backend/images/create";
         $formMethod = "post";
         $createdBy['name'] = $this->loggedInUser;
         $createdBy['id'] = $this->loggedInUserId;
 
         return $this->view->render('backend/pages/imageForm.twig.php', array(
-            'formVars' => $formVars,
-            'action' => $formAction,
-            'method' => $formMethod,
+            'albums'       => $albums,
+            'formVars'     => $formVars,
+            'action'       => $formAction,
+            'method'       => $formMethod,
             'loggedInUser' => $this->loggedInUser,
-            'createdBy' => $createdBy
+            'createdBy'    => $createdBy,
+            'message'      => $message
         ));
     }
 
@@ -76,7 +81,6 @@ class ImageController extends Controller
     public function store()
     {
         $formVars = $this->request->getParsedBody();
-
         $image = new Image;
 
         $timestamp = new \DateTime();
@@ -84,6 +88,7 @@ class ImageController extends Controller
 
         $createdBy = $this->entityManager->find('Database\Entities\User', $formVars['createdById']);
         $image->setCreatedBy($createdBy);
+        $image->setUpdatedBy($createdBy);
 
         $album = $this->entityManager->find('Database\Entities\Album', $formVars['albumId']);
         $image->setAlbum($album);
@@ -91,9 +96,16 @@ class ImageController extends Controller
         $image->setFilename($_FILES["imageFile"]["name"]);
 
         $formVars['filename'] = $_FILES["imageFile"]["name"];
-        $message = $this->hydrateAndPersist($image, $formVars);
-        $this->saveAs('storage/public/img', $formVars['filename']);
-        return $this->index($message);
+
+        $message = Session::getMessage();
+        $success = $this->hydrateAndPersist($image, $formVars);
+        if ($success) {
+            $this->saveAs('storage/public/img', $formVars['filename']);
+            return $this->index($message);
+        } else {
+            unset($formVars['position']);
+            return $this->create($formVars);
+        }
     }
 
     /**
@@ -123,7 +135,6 @@ class ImageController extends Controller
     */
     public function edit($id)
     {
-        //
         $image = $this->entityManager->find('Database\Entities\Image', $id['ID']);
         $imageId = $id['ID'];
         $imagCaption = $image->getCaption();
@@ -133,7 +144,7 @@ class ImageController extends Controller
         $createdBy['name'] = $imageCreatedBy->getName();
         $createdBy['id'] = $imageCreatedBy->getId();
         return $this->view->render('backend/pages/imageForm.twig.php', array(
-            'image'   => $image,
+            'formVars'   => $image,
             'action' => $formAction,
             'method' => $formMethod,
             'loggedInUser' => $this->loggedInUser,
@@ -172,6 +183,7 @@ class ImageController extends Controller
     public function destroy($id)
     {
         // remove content  from the DB
+        // TODO handle image not found
         $image = $this->entityManager->find('Database\Entities\Image', $id['ID']);
         $filename = $image->getFilename();
         if (!$filename) {
@@ -184,7 +196,7 @@ class ImageController extends Controller
         // TODO add error checking
         $path = dirname(__FILE__, 5);
         $filePath = $path . '/storage/public/img/' . $filename;
-        if (file_exists($filepath)) {
+        if (file_exists($filePath)) {
             unlink($filePath);
             $message['type'] = 'alert-danger';
             $message['content'] = "Content entry \"$filename\" deleted succesfully";
@@ -212,16 +224,18 @@ class ImageController extends Controller
         $image->setPosition($position);
         $image->setCaption($caption);
 
+        $this->entityManager->persist($image);
+
         try {
-            $this->entityManager->persist($image);
             $this->entityManager->flush();
-            $message['type'] = 'alert-info';
-            $message['content'] = "$title added succesfully";
-            return $message;
+            Session::setMessage('alert-info', "$title added succesfully");
+            return true;
         } catch (UniqueConstraintViolationException $e) {
-            $message['type'] = 'alert-danger';
-            $message['content'] = "$title could not be added";
-            return $this->create($message, $formVars);
+            Session::setMessage('alert-danger', "$title could not be added. Filename and Position must be unique.");
+            return false;
+        } catch (Exception $e) {
+            Session::setMessage('alert-danger', "$title could not be added.");
+            return false;
         }
     }
 
