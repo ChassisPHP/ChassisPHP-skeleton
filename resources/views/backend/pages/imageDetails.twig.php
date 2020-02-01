@@ -1,22 +1,22 @@
 {% extends 'backend/layout.twig.php' %}
-{% block content %} 
+{% block content %}
 <article class="container itemCenter center column">
 
     {% if message.content is defined %}
     <div class="item alert {{ message.type }}">
         {{ message.content }}
     </div>
-    {% endif %} 
-    
+    {% endif %}
+
     <header class="item">
         <h1>Image</h1>
     </header>
-    
+
     <a href="/backend/images" class="button button-medium blueBackground">All Images</a>
     <div class="col60">
         <div class="item itemCenter">
             <!-- TODO add ln -sr storage/app/public public/storage to documentation -->
-            <img src="{{ baseURL }}storage/img/{{ image.Filename }}" />
+            <img class="width30" src="{{ baseURL }}storage/img/{{ image.Filename }}" />
         </div>
         <div class="item itemCenter">
             <h1 class="">{{ image.Title}}</h1>

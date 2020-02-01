@@ -270,3 +270,9 @@ button {
 .button-medium {
     width: 6em;
 }
+
+/* Images */
+.width30 {
+    width: 30rem;
+    height: auto;
+}
