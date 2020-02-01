@@ -4,8 +4,12 @@
 .env
 **.sw*
 vendor
-storage/
+storage/compiledviews/*
+storage/log/*
+storage/sessions/*
+storage/public/img/*
 composer.lock
 tags
 .ctags
-!storage/backup/.gitkeep
+!storage/log/.gitkeep
+!storage/public/img/.gitkeep
