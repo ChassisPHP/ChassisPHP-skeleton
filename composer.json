@@ -16,14 +16,7 @@
             "Database\\": "Database"
         }
     },
-    "repositories": {
-        "dev-package": {
-        "type": "path",
-        "url": "../ChassisPHP",
-            "options": {}
-        }
-    },
     "require": {
-        "chassisphp/chassisphp": "dev-changesForFrameworkSeparation"
+        "chassisphp/chassisphp": "^0.5"
     }
 }

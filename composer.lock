@@ -4,15 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b934da4957dc059dfe302f742795b497",
+    "content-hash": "60c4634f4fc0ffeddd844abeb3665aea",
     "packages": [
         {
             "name": "chassisphp/chassisphp",
-            "version": "dev-changesForFrameworkSeparation",
+            "version": "0.5.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ChassisPHP/ChassisPHP.git",
+                "reference": "27adadbab0be0bb9539459bd038037a605c1b520"
+            },
             "dist": {
-                "type": "path",
-                "url": "../ChassisPHP",
-                "reference": "39320e87670d1d4781dd9fb1e0d6df730693c237"
+                "type": "zip",
+                "url": "https://api.github.com/repos/ChassisPHP/ChassisPHP/zipball/27adadbab0be0bb9539459bd038037a605c1b520",
+                "reference": "27adadbab0be0bb9539459bd038037a605c1b520",
+                "shasum": ""
             },
             "require": {
                 "doctrine/orm": "^2.5",
@@ -45,16 +51,7 @@
                     "ChassisPHP\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Tests\\": "tests/"
-                }
-            },
-            "scripts": {
-                "backup-sqlite": [
-                    "\\Database\\Backup::run"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -67,14 +64,12 @@
             ],
             "description": "The ChassisPHP Framework - A Framework for CMS Site Development",
             "keywords": [
-                "CMS",
                 "Chassis",
                 "ChassisPHP",
+                "cms",
                 "framework"
             ],
-            "transport-options": {
-                "symlink": true
-            }
+            "time": "2020-02-02T11:17:55+00:00"
         },
         {
             "name": "doctrine/annotations",
@@ -381,16 +376,16 @@
         },
         {
             "name": "doctrine/dbal",
-            "version": "2.10.x-dev",
+            "version": "2.11.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "96cda301be1253608c3ab3c286b6d72ebcee510c"
+                "reference": "f9a0563f8aa2929ab0b903c1971c5d11a8ceb209"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/96cda301be1253608c3ab3c286b6d72ebcee510c",
-                "reference": "96cda301be1253608c3ab3c286b6d72ebcee510c",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/f9a0563f8aa2929ab0b903c1971c5d11a8ceb209",
+                "reference": "f9a0563f8aa2929ab0b903c1971c5d11a8ceb209",
                 "shasum": ""
             },
             "require": {
@@ -469,7 +464,7 @@
                 "sqlserver",
                 "sqlsrv"
             ],
-            "time": "2020-01-04T13:19:58+00:00"
+            "time": "2020-01-30T19:46:54+00:00"
         },
         {
             "name": "doctrine/event-manager",
@@ -905,12 +900,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/reflection.git",
-                "reference": "12fea966b2ef9d9f48536d1f6ab253c787f07a87"
+                "reference": "c7588e0baa0afd586b3db807dd4643582ba1cb05"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/reflection/zipball/12fea966b2ef9d9f48536d1f6ab253c787f07a87",
-                "reference": "12fea966b2ef9d9f48536d1f6ab253c787f07a87",
+                "url": "https://api.github.com/repos/doctrine/reflection/zipball/c7588e0baa0afd586b3db807dd4643582ba1cb05",
+                "reference": "c7588e0baa0afd586b3db807dd4643582ba1cb05",
                 "shasum": ""
             },
             "require": {
@@ -975,7 +970,7 @@
                 "reflection",
                 "static"
             ],
-            "time": "2020-01-18T12:09:54+00:00"
+            "time": "2020-01-29T21:57:36+00:00"
         },
         {
             "name": "league/container",
@@ -1474,12 +1469,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "27ecd129e5e8762eca5b9c0af4218d137aa32d58"
+                "reference": "b341b0d05cbb1e085125705a8cf59d874625d537"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/27ecd129e5e8762eca5b9c0af4218d137aa32d58",
-                "reference": "27ecd129e5e8762eca5b9c0af4218d137aa32d58",
+                "url": "https://api.github.com/repos/symfony/console/zipball/b341b0d05cbb1e085125705a8cf59d874625d537",
+                "reference": "b341b0d05cbb1e085125705a8cf59d874625d537",
                 "shasum": ""
             },
             "require": {
@@ -1490,6 +1485,7 @@
             },
             "conflict": {
                 "symfony/dependency-injection": "<4.4",
+                "symfony/dotenv": "<5.1",
                 "symfony/event-dispatcher": "<4.4",
                 "symfony/lock": "<4.4",
                 "symfony/process": "<4.4"
@@ -1542,7 +1538,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2020-01-25T16:03:00+00:00"
+            "time": "2020-01-30T12:04:33+00:00"
         },
         {
             "name": "symfony/debug",
@@ -1734,12 +1730,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
-                "reference": "f3abd07a56111ebe6a1ad6f1cbc23e4f8983f8f5"
+                "reference": "3bdf327219a57aaa1910a6edfd4ef70c30bb85fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/f3abd07a56111ebe6a1ad6f1cbc23e4f8983f8f5",
-                "reference": "f3abd07a56111ebe6a1ad6f1cbc23e4f8983f8f5",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/3bdf327219a57aaa1910a6edfd4ef70c30bb85fa",
+                "reference": "3bdf327219a57aaa1910a6edfd4ef70c30bb85fa",
                 "shasum": ""
             },
             "require": {
@@ -1780,7 +1776,7 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
-            "time": "2020-01-04T12:05:51+00:00"
+            "time": "2020-01-30T16:05:53+00:00"
         },
         {
             "name": "symfony/http-kernel",
@@ -1788,12 +1784,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-kernel.git",
-                "reference": "97ffadc705cf607360373f3d09feb89f7f56a558"
+                "reference": "4357749bc8772155adb30bc6165a6b7eafb77fff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/97ffadc705cf607360373f3d09feb89f7f56a558",
-                "reference": "97ffadc705cf607360373f3d09feb89f7f56a558",
+                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/4357749bc8772155adb30bc6165a6b7eafb77fff",
+                "reference": "4357749bc8772155adb30bc6165a6b7eafb77fff",
                 "shasum": ""
             },
             "require": {
@@ -1870,7 +1866,7 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "https://symfony.com",
-            "time": "2020-01-21T13:12:52+00:00"
+            "time": "2020-01-30T16:05:58+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -2411,12 +2407,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/validator.git",
-                "reference": "46580e4429797438033fc1f226cb4cba67afe280"
+                "reference": "3bc23ae0df18767c3f5f0551f29379c6826816d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/validator/zipball/46580e4429797438033fc1f226cb4cba67afe280",
-                "reference": "46580e4429797438033fc1f226cb4cba67afe280",
+                "url": "https://api.github.com/repos/symfony/validator/zipball/3bc23ae0df18767c3f5f0551f29379c6826816d0",
+                "reference": "3bc23ae0df18767c3f5f0551f29379c6826816d0",
                 "shasum": ""
             },
             "require": {
@@ -2489,7 +2485,7 @@
             ],
             "description": "Symfony Validator Component",
             "homepage": "https://symfony.com",
-            "time": "2020-01-14T18:27:07+00:00"
+            "time": "2020-01-31T08:56:24+00:00"
         },
         {
             "name": "symfony/var-dumper",
@@ -2625,12 +2621,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "e52bcf67cfc047c3aeecb67b6db462165ae3d7a6"
+                "reference": "a086a3704d7a25cbd2beb4622ad9c006d645a61c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/e52bcf67cfc047c3aeecb67b6db462165ae3d7a6",
-                "reference": "e52bcf67cfc047c3aeecb67b6db462165ae3d7a6",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/a086a3704d7a25cbd2beb4622ad9c006d645a61c",
+                "reference": "a086a3704d7a25cbd2beb4622ad9c006d645a61c",
                 "shasum": ""
             },
             "require": {
@@ -2682,7 +2678,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2020-01-13T08:20:25+00:00"
+            "time": "2020-01-31T08:01:32+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -2805,9 +2801,7 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "chassisphp/chassisphp": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
