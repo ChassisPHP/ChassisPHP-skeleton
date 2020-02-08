@@ -97,10 +97,10 @@ class ImageController extends Controller
 
         $formVars['filename'] = $_FILES["imageFile"]["name"];
 
-        $message = Session::getMessage();
         $success = $this->hydrateAndPersist($image, $formVars);
-        if ($success) {
-            $this->saveAs('storage/public/img', $formVars['filename']);
+        $message = Session::getMessage();
+
+        if ($success && ($this->saveAs('storage/public/img', $formVars['filename']))) {
             return $this->index($message);
         } else {
             unset($formVars['position']);
@@ -183,12 +183,14 @@ class ImageController extends Controller
     public function destroy($id)
     {
         // remove content  from the DB
-        // TODO handle image not found
         $image = $this->entityManager->find('Database\Entities\Image', $id['ID']);
-        $filename = $image->getFilename();
-        if (!$filename) {
-            //TODO throw exception
+        if (!$image) {
+            $message['type'] = 'alert-danger';
+            $message['content'] = "Image ID " . $id['ID'] . " not found";
+            return $this->index($message);
         }
+
+        $filename = $image->getFilename();
         $this->entityManager->remove($image);
         $this->entityManager->flush();
 
@@ -199,12 +201,12 @@ class ImageController extends Controller
         if (file_exists($filePath)) {
             unlink($filePath);
             $message['type'] = 'alert-danger';
-            $message['content'] = "Content entry \"$filename\" deleted succesfully";
+            $message['content'] = "Image \"$filename\" deleted succesfully";
             return $this->index($message);
         } else {
             //TODO throw error
             $message['type'] = 'alert-danger';
-            $message['content'] = "Image \"$filename\" not found";
+            $message['content'] = "Image file  \"$filename\" not found";
             return $this->index($message);
         }
     }
