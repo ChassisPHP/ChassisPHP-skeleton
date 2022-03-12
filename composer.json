@@ -6,7 +6,7 @@
     "authors": [
         {
             "name": "Roger Creasy",
-            "email": "roger.creasy@gmail.com"
+            "email": "roger@RogerCreasy.com"
         }
     ],
     "minimum-stability": "dev",
@@ -17,6 +17,6 @@
         }
     },
     "require": {
-        "chassisphp/chassisphp": "^0.5"
+        "chassisphp/chassisphp": "0.5.1-beta"
     }
 }
