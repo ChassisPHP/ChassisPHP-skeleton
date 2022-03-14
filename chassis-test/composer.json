@@ -17,6 +17,6 @@
         }
     },
     "require": {
-        "chassisphp/chassisphp": "0.5.3-beta"
+        "chassisphp/chassisphp": "0.5.1-beta"
     }
 }

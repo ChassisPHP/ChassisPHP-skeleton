@@ -1,0 +1,15 @@
+.DS_Store
+.idea/
+.git/
+.env
+**.sw*
+vendor
+storage/compiledviews/*
+storage/log/*
+storage/sessions/*
+storage/public/img/*
+composer.lock
+tags
+.ctags
+!storage/log/.gitkeep
+!storage/public/img/.gitkeep
