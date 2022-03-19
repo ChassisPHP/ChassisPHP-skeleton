@@ -18,5 +18,20 @@
     },
     "require": {
         "chassisphp/chassisphp": "^0.5"
+    },
+     "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.3",
+        "guzzlehttp/guzzle": "^6.3",
+        "symfony/process": "^4.1"
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true
+        }
     }
 }
