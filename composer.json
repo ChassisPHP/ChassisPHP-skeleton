@@ -18,5 +18,15 @@
     },
     "require": {
         "chassisphp/chassisphp": "^0.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.3",
+        "guzzlehttp/guzzle": "^6.3",
+        "symfony/process": "^4.1"
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true
+        }
     }
 }
