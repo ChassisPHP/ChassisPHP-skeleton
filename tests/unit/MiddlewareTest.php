@@ -13,20 +13,22 @@ class MiddlewareTest extends TestCase
     private $app;
     private static $process;
 
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         $public_path = realpath(__DIR__.'/../../public');
-        self::$process = new Process("exec php -S localhost:8890 -t $public_path");
+        // phpdotenv 2 triggers a PHP 8 deprecation; printing it would send headers
+        // early. Remove display_errors=0 once the framework moves to phpdotenv 5.
+        self::$process = new Process(['php', '-d', 'display_errors=0', '-S', 'localhost:8890', '-t', $public_path]);
         self::$process->start();
         usleep(2000000);
     }
 
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
         self::$process->stop();
     }
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->http = new Client(
             [
@@ -37,7 +39,7 @@ class MiddlewareTest extends TestCase
         );
     }
 
-    public function tearDown()
+    protected function tearDown(): void
     {
         $this->http = null;
     }
@@ -53,7 +55,7 @@ class MiddlewareTest extends TestCase
         $this->assertEquals("text/html; charset=UTF-8", $contentType);
         $body = $response->getBody();
         $body = $body->getContents();
-        $this->assertContains(
+        $this->assertStringContainsString(
             'The page you attempted to access requires that you log in ',
             $body
         );
@@ -70,7 +72,7 @@ class MiddlewareTest extends TestCase
         $this->assertEquals("text/html; charset=UTF-8", $contentType);
         $body = $response->getBody();
         $body = $body->getContents();
-        $this->assertContains(
+        $this->assertStringContainsString(
             'The page you attempted to access requires that you log in ',
             $body
         );
@@ -87,7 +89,7 @@ class MiddlewareTest extends TestCase
         $this->assertEquals("text/html; charset=UTF-8", $contentType);
         $body = $response->getBody();
         $body = $body->getContents();
-        $this->assertContains(
+        $this->assertStringContainsString(
             'The page you attempted to access requires that you log in ',
             $body
         );
@@ -104,7 +106,7 @@ class MiddlewareTest extends TestCase
         $this->assertEquals("text/html; charset=UTF-8", $contentType);
         $body = $response->getBody();
         $body = $body->getContents();
-        $this->assertContains(
+        $this->assertStringContainsString(
             'The page you attempted to access requires that you log in ',
             $body
         );
@@ -121,7 +123,7 @@ class MiddlewareTest extends TestCase
         $this->assertEquals("text/html; charset=UTF-8", $contentType);
         $body = $response->getBody();
         $body = $body->getContents();
-        $this->assertContains(
+        $this->assertStringContainsString(
             'The page you attempted to access requires that you log in ',
             $body
         );

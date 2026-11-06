@@ -3,7 +3,6 @@
 namespace Tests\RoutesTest;
 
 use Tests\TestCase;
-use Zend\Diactoros\ServerRequestFactory;
 use GuzzleHttp\Client;
 use Symfony\Component\Process\Process;
 
@@ -13,25 +12,27 @@ class RoutesTest extends TestCase
     private $app;
     private static $process;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->http = new Client(['base_uri' => 'http://localhost:8890', 'verify' => false]);
     }
 
-    public function tearDown()
+    protected function tearDown(): void
     {
         $this->http = null;
     }
 
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         $public_path = realpath(__DIR__.'/../../public');
-        self::$process = new Process("exec php -S localhost:8890 -t $public_path");
+        // phpdotenv 2 triggers a PHP 8 deprecation; printing it would send headers
+        // early. Remove display_errors=0 once the framework moves to phpdotenv 5.
+        self::$process = new Process(['php', '-d', 'display_errors=0', '-S', 'localhost:8890', '-t', $public_path]);
         self::$process->start();
         usleep(2000000);
     }
 
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
         self::$process->stop();
     }
@@ -44,5 +45,20 @@ class RoutesTest extends TestCase
 
         $contentType = $response->getHeader('Content-Type')[0];
         $this->assertEquals("text/html; charset=UTF-8", $contentType);
+    }
+
+    public function testRouteVariable()
+    {
+        $response = $this->http->request('GET', '/name/World');
+
+        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertStringContainsString('Well, hello World !!', (string) $response->getBody());
+    }
+
+    public function testQueryStringDoesNotAffectRouting()
+    {
+        $response = $this->http->request('GET', '/about?x=1');
+
+        $this->assertEquals(200, $response->getStatusCode());
     }
 }

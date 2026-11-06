@@ -2,15 +2,15 @@
 
 namespace App\Http\Middleware;
 
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Request;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
 class Middleware
 {
     public function __invoke(
-        Request $request,
-        Response $response,
-        callable $next = null
+        ServerRequestInterface $request,
+        ResponseInterface $response,
+        ?callable $next = null
     ) {
         if (!$next) {
             return $response;

@@ -12,7 +12,7 @@ class HashTest extends TestCase
     private $PWcheck;
     private $hash;
 
-    public function setup()
+    protected function setUp(): void
     {
         $this->hash = new Hash;
     }
