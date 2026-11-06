@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ChassisPHP/ChassisPHP.git",
-                "reference": "9d962d2b165aab578a2c7bec258601111a4ad1ee"
+                "reference": "a44ce5502c6aac391e085245c04123b361e12e31"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ChassisPHP/ChassisPHP/zipball/9d962d2b165aab578a2c7bec258601111a4ad1ee",
-                "reference": "9d962d2b165aab578a2c7bec258601111a4ad1ee",
+                "url": "https://api.github.com/repos/ChassisPHP/ChassisPHP/zipball/a44ce5502c6aac391e085245c04123b361e12e31",
+                "reference": "a44ce5502c6aac391e085245c04123b361e12e31",
                 "shasum": ""
             },
             "require": {
@@ -43,7 +43,6 @@
                 "phpunit/phpunit": "^6.3",
                 "symfony/process": "^4.1"
             },
-            "default-branch": true,
             "type": "project",
             "autoload": {
                 "files": [
@@ -75,7 +74,8 @@
                 "issues": "https://github.com/ChassisPHP/ChassisPHP/issues",
                 "source": "https://github.com/ChassisPHP/ChassisPHP/tree/0.5.x"
             },
-            "time": "2022-03-18T11:06:26+00:00"
+            "time": "2026-11-06T23:17:29+00:00",
+            "published-time": "2026-11-06T23:17:33+00:00"
         },
         {
             "name": "composer/package-versions-deprecated",
@@ -5776,10 +5776,10 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
-    "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "platform": {},
+    "platform-dev": {},
+    "plugin-api-version": "2.11.0"
 }
