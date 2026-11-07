@@ -13,3 +13,5 @@ tags
 .ctags
 !storage/log/.gitkeep
 !storage/public/img/.gitkeep
+!storage/sessions/.gitkeep
+!storage/compiledviews/.gitkeep
