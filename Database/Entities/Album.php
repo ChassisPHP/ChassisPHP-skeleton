@@ -2,11 +2,9 @@
 
 namespace Database\Entities;
 
-//use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\UniqueConstraint;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
 * @ORM\Entity
@@ -23,13 +21,11 @@ class Album
 
     /**
     *  @ORM\Column(type="string", length=45)
-    *  @Assert\NotBlank()
     **/
     protected $name;
 
     /**
     * @ORM\Column(type="text")
-    * @Assert\NotBlank()
     **/
     protected $description;
 

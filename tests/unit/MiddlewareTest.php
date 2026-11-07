@@ -16,8 +16,8 @@ class MiddlewareTest extends TestCase
     public static function setUpBeforeClass(): void
     {
         $public_path = realpath(__DIR__.'/../../public');
-        // phpdotenv 2 triggers a PHP 8 deprecation; printing it would send headers
-        // early. Remove display_errors=0 once the framework moves to phpdotenv 5.
+        // League Container 3 triggers PHP 8.4 deprecations; printing them would send
+        // headers early. Remove display_errors=0 once the framework moves past it.
         self::$process = new Process(['php', '-d', 'display_errors=0', '-S', 'localhost:8890', '-t', $public_path]);
         self::$process->start();
         usleep(2000000);

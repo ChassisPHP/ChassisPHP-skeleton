@@ -2,11 +2,9 @@
 
 namespace Database\Entities;
 
-//use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\UniqueConstraint;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
 * @ORM\Entity
@@ -23,14 +21,11 @@ class User
 
     /**
     *  @ORM\Column(type="string", length=255)
-    *  @Assert\NotBlank()
     **/
     protected $name;
 
     /**
     * @ORM\Column(type="string", length=255, unique=true)
-    * @Assert\NotBlank()
-    * @Assert\Email()
     **/
     protected $email;
 

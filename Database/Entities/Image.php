@@ -5,7 +5,6 @@ namespace Database\Entities;
 use Doctrine\ORM\Mapping\Index;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\UniqueConstraint;
-use Symfony\Bridge\Doctrine\Validator\Constraints as Assert;
 
 /**
 * @ORM\Entity
